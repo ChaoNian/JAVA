@@ -1,0 +1,23 @@
+# 编译产物
+*.class
+*.jar
+*.war
+*.ear
+out/
+target/
+build/
+
+# 操作系统
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+
+# JVM 崩溃日志
+hs_err_pid*
+replay_pid*
