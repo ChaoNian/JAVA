@@ -63,8 +63,26 @@ java -cp out com.learn.intro.App 你的名字
 能口头回答：
 
 - `.java` 和 `.class` 谁是人写的、谁是编译器生成的？
+你打开编辑器改的是 Hello.java 这种源文件：里面是给人类看的 Java 代码。javac 读这份源文件，翻译成 JVM 能执行的字节码，写出 Hello.class。java 命令加载的是 .class，不是 .java。
+
 - 为什么 `com.learn.intro.App` 不能写成 `java App`？
+因为 JVM 要找的是完整类名，不是文件名。
+
+App.java 第一行写了 package com.learn.intro;，所以这个类的真名是 com.learn.intro.App，不是 App。java 后面跟的必须是这个真名。
+
+-cp out 表示：把 out 当作包的根目录，然后按包名一层层往下找：
+ava -cp out App 会在 out\App.class 找一个没有包名的 App。你的 App.class 不在那里，而在 out\com\learn\intro\ 里，所以找不到。
+
+对比你已经跑通的 Hello：它没有 package 声明，完整类名就是 Hello，文件就在 out\Hello.class，所以可以写 java -cp out Hello。
+
+可以记成：
+
+无包名：java -cp out 类名
+有包名：java -cp 包的根目录 包名.类名
+包名、目录、java 命令里的名字必须三者一致。这就是为什么不能把 com.learn.intro.App 写成 java App。
+
 - `-d out` 和 `-cp out` 各做什么？
+-cp 就是 classpath：JVM 只在你指定的目录里找 .class，不会自动去子文件夹里搜。
 
 ## 这一阶段先别碰
 
