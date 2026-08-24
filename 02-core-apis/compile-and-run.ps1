@@ -18,8 +18,15 @@ $sources = Get-ChildItem -Recurse -Filter *.java src | ForEach-Object { $_.FullN
 Write-Host "`n== compile all =="
 javac -encoding UTF-8 -d out @sources
 
-Write-Host "`n== Ex01CheckedVsUnchecked =="
-java "-Dstdout.encoding=UTF-8" "-Dstderr.encoding=UTF-8" -cp out com.learn.apis.Ex01CheckedVsUnchecked
+function Invoke-Lesson($title, $mainClass) {
+    Write-Host "`n== $title =="
+    java "-Dstdout.encoding=UTF-8" "-Dstderr.encoding=UTF-8" -cp out $mainClass
+}
 
-Write-Host "`n== Ex02TryWithResources =="
-java "-Dstdout.encoding=UTF-8" "-Dstderr.encoding=UTF-8" -cp out com.learn.apis.Ex02TryWithResources
+Invoke-Lesson "Ex01CheckedVsUnchecked" "com.learn.apis.Ex01CheckedVsUnchecked"
+Invoke-Lesson "Ex02TryWithResources" "com.learn.apis.Ex02TryWithResources"
+Invoke-Lesson "Ex03ListSetMap" "com.learn.apis.Ex03ListSetMap"
+Invoke-Lesson "Ex04HashMapKey" "com.learn.apis.Ex04HashMapKey"
+Invoke-Lesson "Ex05Generics" "com.learn.apis.Ex05Generics"
+Invoke-Lesson "Ex06JavaTime" "com.learn.apis.Ex06JavaTime"
+Invoke-Lesson "CsvApp" "com.learn.apis.csv.CsvApp"

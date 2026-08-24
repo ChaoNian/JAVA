@@ -18,7 +18,7 @@ public class Ex01CheckedVsUnchecked {
      */
     static class BlankInputException extends Exception {
         BlankInputException(String message) {
-            super(message);
+            super(message); // 把说明交给父类，后面 e.getMessage() 才能读到
         }
     }
 
@@ -33,14 +33,13 @@ public class Ex01CheckedVsUnchecked {
     }
 
     /**
-     * throws BlankInputException：这个 checked 异常会传到调用方。
-     * NumberFormatException、NegativeNumberException 都是 unchecked，不必写进 throws。
+     * throws 只写 checked。unchecked 也可以抛，但不必出现在方法签名里。
      */
     static int parsePositive(String raw) throws BlankInputException {
         if (raw == null || raw.isBlank()) {
             throw new BlankInputException("input is blank");
         }
-        int n = Integer.parseInt(raw);
+        int n = Integer.parseInt(raw); // 不是数字时抛 NumberFormatException（unchecked）
         if (n < 0) {
             throw new NegativeNumberException("must be >= 0, got " + n);
         }
@@ -58,6 +57,7 @@ public class Ex01CheckedVsUnchecked {
         System.out.println("自定义异常用来区分「空输入」和「负数」，不要全用 Exception。");
     }
 
+    /** 正常路径：try 仍要写，因为 parsePositive 声明了 throws BlankInputException。 */
     static void tryOk() {
         try {
             System.out.println("parsePositive(\"12\") = " + parsePositive("12"));
@@ -66,33 +66,36 @@ public class Ex01CheckedVsUnchecked {
         }
     }
 
+    /** 空串：编译器逼你 catch（或继续 throws），否则这一行编不过。 */
     static void tryBlank() {
         try {
             parsePositive("  ");
         } catch (BlankInputException e) {
-            // 没有这个 catch（或 throws），上面那一行编译不过
             System.out.println("blank -> caught " + e.getClass().getSimpleName() + ": " + e.getMessage());
         }
     }
 
+    /**
+     * 负数：即使不 catch NegativeNumberException 也能编译。
+     * 这里写上 catch，只是为了打印并让 main 继续跑后面的例子。
+     */
     static void tryNegative() {
         try {
             parsePositive("-3");
         } catch (BlankInputException e) {
             System.out.println("unexpected blank: " + e.getMessage());
         } catch (NegativeNumberException e) {
-            // 这个 catch 不是编译器逼的；写上是为了演示，并让程序继续往下跑
             System.out.println("negative -> caught " + e.getClass().getSimpleName() + ": " + e.getMessage());
         }
     }
 
+    /** "abc" 过得了空串检查，死在 Integer.parseInt。这也是 unchecked。 */
     static void tryNotANumber() {
         try {
             parsePositive("abc");
         } catch (BlankInputException e) {
             System.out.println("unexpected blank: " + e.getMessage());
         } catch (NumberFormatException e) {
-            // JDK 自带的 unchecked：Integer.parseInt 失败时抛出
             System.out.println("not a number -> caught " + e.getClass().getSimpleName());
         }
     }
