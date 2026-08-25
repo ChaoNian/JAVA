@@ -14,13 +14,24 @@
 - 惰性求值、短路；并行流默认别用
 - `Comparator` 链式比较；不可变收集 `Collectors.toUnmodifiableList`
 
-## 练习题（写入本目录 `src/`）
+## 练习题（本目录 `src/`）
 
-把阶段 2 的 CSV 统计改写成 Stream；再写一份命令式对照，比较可读性。
+阶段 2 的 CSV 统计语义，这里用**内存样例**做对照（不读文件）：
+
+- `OrderStatsImperative`：命令式 for / Map
+- `OrderStatsStream`：`groupingBy` + 下游 collector
+- `CompareApp`：同一份数据两边跑，应打印 `MATCH`
+
+在本目录执行：
+
+```powershell
+.\compile-and-run.ps1
+```
 
 ## 过关标准
 
 能手写 `groupingBy` + 下游 collector，并指出一段「伪函数式」代码的问题。
+跑通对照后，能指认 Stream 版里 `groupingBy(Order::sku, summingInt(Order::qty))` 在哪。
 
 ## 这一阶段先别碰
 
