@@ -14,13 +14,26 @@
 - `SequencedCollection`、未命名变量 `_`（按 JDK 版本）
 - 模块化 JPMS 只需概念级：多数练习仍用 classpath
 
-## 练习题（写入本目录 `src/`）
+## 练习题（本目录 `src/`）
 
-用 `sealed` + `record` 建模表达式树或订单状态机，用 `switch` 穷尽匹配。
+订单状态机（`sealed` + `record` + 穷尽 `switch`）：
+
+- `OrderStatus` + `Pending` / `Paid` / `Shipped` / `Cancelled`
+- `OrderTransitions`：合法流转；非法抛 `IllegalStateException`
+- `OrderStatusDescribe`：模式匹配描述 + text block 说明
+- `LegacyOrderStatusBean`：可变 JavaBean 对照——何时不能改成 record
+- `CompareApp`：happy path / cancel / 非法流转 / Bean vs record
+
+在本目录执行：
+
+```powershell
+.\compile-and-run.ps1
+```
 
 ## 过关标准
 
 能把一个「一堆 getter 的 JavaBean」改成 `record`，并说明何时不能改。
+跑通后能指认：`switch` 漏写一个 `case Xxx` 时编译器为何报错。
 
 ## 这一阶段先别碰
 
