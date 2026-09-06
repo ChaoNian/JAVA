@@ -8,6 +8,7 @@
 
 ## 要学什么
 
+
 - `record`、`sealed` class、pattern matching `switch`
 - text blocks、`switch` 表达式、`instanceof` 模式匹配
 - `var` 的边界；局部类型推断不要滥用
@@ -25,6 +26,7 @@
 - `CompareApp`：happy path / cancel / 非法流转 / Bean vs record
 
 在本目录执行：
+
 
 ```powershell
 .\compile-and-run.ps1
