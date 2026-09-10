@@ -12,15 +12,37 @@
 - 调试器：断点、求值、调用栈；读 stack trace
 - 堆、栈、GC 代际模型直觉；`OutOfMemoryError` / `StackOverflowError`
 - 日志（SLF4J 概念）、不可变对象与防御性拷贝
-- 构建：Maven 或 Gradle 生命周期、把单元测试接入构建
+- 构建：Maven 生命周期、把单元测试接入构建
 
-## 练习题
+## 练习题（本目录）
 
-1. 给阶段 1–3 的项目补测试。
-2. 故意制造 NPE，顺着堆栈定位到你的代码行。
-3. 用很小的堆（例如 `java -Xmx16m ...`）观察内存相关错误，把排查步骤记到 [`notes/`](../notes/README.md)。
+本阶段第一次加 `pom.xml`，依赖**只放 JUnit 5**。业务代码是 01–03 语义的自包含精简版，方便在一个模块里写测试。
 
-本阶段可以第一次加 `pom.xml` 或 `build.gradle`，依赖只放 JUnit，不要堆框架。
+| 包 / 类 | 练什么 |
+|---------|--------|
+| `money.Money` + `MoneyTest` | 阶段 1 金额；`assertEquals` / `assertThrows` / `@ParameterizedTest` |
+| `order.OrderStats` + `OrderStatsTest` | 阶段 2/3 统计；不可变结果；`@MethodSource` |
+| `immutable.UserProfile` / `TagBag` | 防御性拷贝 vs 泄漏内部 List |
+| `debug.CheckoutService` + 测试 | 故意 NPE，堆栈定位到 `resolveCity` |
+| `jvm.StackOverflowDemo` / `OomDemo` | 栈 vs 堆；`-Xss` / `-Xmx16m` |
+| `logging.AuditLogDemo` | JUL 练级别；注释里对照 SLF4J 分工 |
+| `CompareApp` | 串起非极限路径的对照输出 |
+
+在本目录执行：
+
+```powershell
+.\compile-and-run.ps1
+.\run-jvm-demos.ps1
+```
+
+或直接：
+
+```powershell
+mvn test
+mvn exec:java
+```
+
+练习 2 / 3：跑 `CompareApp` 或测试里的 NPE；再用 `run-jvm-demos.ps1` 看 OOM，把排查步骤记到 [`notes/`](../notes/README.md)。
 
 ## 过关标准
 
@@ -28,4 +50,4 @@
 
 ## 这一阶段先别碰
 
-JVM 调优玄学、火焰图（留到有真实性能问题时再学）。
+JVM 调优玄学、火焰图（留到有真实性能问题时再学）。不要在本模块堆 Mockito / Spring。
