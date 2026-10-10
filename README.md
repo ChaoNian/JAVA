@@ -30,3 +30,6 @@
 - **读**不超过 40 分钟，立刻用代码验证。
 - **写**一个小练习类，例如 `Ex01EqualsVsEq.java`。
 - **讲**：阶段结束用自己的话在该目录 README 下补「踩坑」。
+
+
+学习JAVA https://dev.java/learn/first-steps/first-java-code/jshell-tool/
