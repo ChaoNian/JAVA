@@ -67,5 +67,4 @@ print(new int[] {1, 2, 3});
 
 ## 练习
 
-
 [`00-setup/src/ArrayPractice.java`](../00-setup/src/ArrayPractice.java)
