@@ -7,4 +7,4 @@
 2. 常见误用是什么？
 3. 一段会出错的反例（可以链到某次练习）。
 
-文件名示例：`string-equals.md`、`string-basics.md`、`stringbuffer-builder.md`、`array-basics.md`、`collections-framework.md`、`enum-basics.md`、`constructor-basics.md`、`oop-pillars.md`、`override-overload.md`、`hashmap-key.md`、`happens-before.md`、`variable-naming.md`、`modifiers.md`。
+文件名示例：`string-equals.md`、`string-basics.md`、`stringbuffer-builder.md`、`array-basics.md`、`collections-framework.md`、`enum-basics.md`、`package-basics.md`、`reflection-basics.md`、`constructor-basics.md`、`oop-pillars.md`、`override-overload.md`、`hashmap-key.md`、`happens-before.md`、`variable-naming.md`、`modifiers.md`。

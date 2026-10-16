@@ -19,3 +19,7 @@ Write-Host "`n== com.learn.intro.App =="
 javac -d out src\com\learn\intro\Greeter.java src\com\learn\intro\App.java
 java -cp out com.learn.intro.App
 java -cp out com.learn.intro.App learner
+
+Write-Host "`n== com.learn.packages.demo.PackagePractice =="
+javac -encoding UTF-8 -d out src\com\learn\packages\demo\LocalHelper.java src\com\learn\packages\demo\PackagePractice.java src\com\learn\packages\util\Clock.java src\com\learn\other\Clock.java
+java -cp out com.learn.packages.demo.PackagePractice
