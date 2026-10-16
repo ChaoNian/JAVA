@@ -30,5 +30,8 @@ java -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8 -cp out com.learn.basics.Ex
 Write-Host "`n== Ex04Methods =="
 java -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8 -cp out com.learn.basics.Ex04Methods
 
+Write-Host "`n== EnumPractice =="
+java -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8 -cp out com.learn.basics.EnumPractice
+
 Write-Host "`n== BankApp =="
 java -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8 -cp out com.learn.basics.bank.BankApp
